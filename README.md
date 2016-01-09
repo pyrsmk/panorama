@@ -9,6 +9,7 @@ Install
 ```
 npm install pyrsmk-panorama
 bower install pyrsmk-panorama
+jam install pyrsmk-panorama
 ```
 
 Use
