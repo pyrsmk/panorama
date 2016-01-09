@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>panorama</title>
+		<meta charset="utf-8">
+		<script src="node_modules/pyrsmk-w/W.min.js"></script>
+		<script src="node_modules/pyrsmk-quark/quark.min.js"></script>
+		<script src="node_modules/quarky/quarky.min.js"></script>
+		<script src="../panorama.min.js"></script>
+		<style>
+			html, body {
+				width: 100%;
+				height: 100%;
+			}
+			
+			body {
+				margin: 0;
+			}
+			
+			div {
+				width: 600px;
+				height: 100%;
+				margin: 0 auto;
+				position: relative;
+				z-index: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<script>			
+			panorama($('body').node, 'images/background.jpg', {sizing: 'cover'}).then(function(image) {
+				W.addListener(function() {
+					image.redraw();
+				});
+			});
+						
+			panorama($('div').node, 'images/background.jpg', {sizing: 'contain'}).then(function(image) {
+				W.addListener(function() {
+					image.redraw();
+				});
+			});
+		</script>
+	</body>
+</html>
