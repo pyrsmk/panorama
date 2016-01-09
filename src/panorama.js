@@ -1,4 +1,4 @@
-/*! panorama 0.1.0 (https://github.com/pyrsmk/panorama) */
+/*! panorama 0.1.1 (https://github.com/pyrsmk/panorama) */
 
 module.exports = function(node, url, options) {
 	
@@ -21,6 +21,7 @@ module.exports = function(node, url, options) {
 			x, y,
 			width,
 			height;
+		options = options || {};
 		options.sizing = 'sizing' in options ? options.sizing : 'cover';
 		options.left = 'left' in options ? options.left : 'center';
 		options.top = 'top' in options ? options.top : 'center';

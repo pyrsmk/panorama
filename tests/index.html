@@ -28,7 +28,10 @@
 	</head>
 	<body>
 		<div></div>
-		<script>			
+		<script>	
+			var $ = quark.$,
+				$$ = quark.$$;
+			
 			panorama($('body').node, 'images/background.jpg', {sizing: 'cover'}).then(function(image) {
 				W.addListener(function() {
 					image.redraw();
