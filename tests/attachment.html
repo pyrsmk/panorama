@@ -10,11 +10,11 @@
 		<style>
 			html, body {
 				width: 100%;
-				height: 100%;
 			}
 			
 			body {
 				margin: 0;
+				height: 3000px;
 			}
 			
 			div {
@@ -32,13 +32,21 @@
 			var $ = quark.$,
 				$$ = quark.$$;
 			
-			panorama($('body').node, 'images/background.jpg', {sizing: 'cover'}).then(function(image) {
+			panorama(
+				$('body').node,
+				'images/background.jpg',
+				{size: 'contain', attachment: 'fixed', top: 0}
+			).then(function(image) {
 				W.addListener(function() {
 					image.redraw();
 				});
 			});
 						
-			panorama($('div').node, 'images/background.jpg', {sizing: 'contain'}).then(function(image) {
+			panorama(
+				$('div').node,
+				'images/background.jpg',
+				{size: 'contain', attachment: 'scroll'}
+			).then(function(image) {
 				W.addListener(function() {
 					image.redraw();
 				});

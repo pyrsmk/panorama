@@ -1,4 +1,4 @@
-panorama 0.1.2
+panorama 0.2.0
 ==============
 
 Theres a lot websites today showing big background images. But loading images of that size can havea big impact on performance. Panorama tries to solve this problem by using Canvas2D to lighten images footprint.
@@ -24,9 +24,10 @@ panorama($('.some_block')[0], 'images/background.jpg');
 
 But panorama handles some options too as its third parameter :
 
-- sizing : either 'contain' or 'cover' (by default)
-- left : a number or 'center' (by default)
-- top : a number or 'center' (by default)
+- size : either `contain` or `cover` (by default)
+- attachment : `scroll` (default) or `fixed`
+- left : a `number` in px or `center` (by default)
+- top : a `number` in px or `center` (by default)
 
 ```js
 // The whole image will be contained in its container
@@ -35,7 +36,7 @@ panorama($('div')[0], 'images/picture.png', {sizing: 'contain'});
 
 Since panorama creates a `canvas` node in absolute position, you should position your container too (at least with `position: relative`);
 
-NOTE : if `canvas` is not available on the browser then it fallbacks to `backgroundImage`
+NOTE : if `canvas` is not available on the browser then it fallbacks to `background` CSS property
 
 Advanced use
 ------------

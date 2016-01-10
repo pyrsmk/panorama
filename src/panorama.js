@@ -1,31 +1,27 @@
-/*! panorama 0.1.2 (https://github.com/pyrsmk/panorama) */
+/*! panorama 0.2.0 (https://github.com/pyrsmk/panorama) */
 
 module.exports = function(node, url, options) {
 	
 	// Init canvas
 	var canvas = document.createElement('canvas'),
-		context,
-		canvasSupported = true;
-	
-	// Detect canvas support
-	if(!(canvas.getContext && (context = canvas.getContext('2d')))) {
-		canvasSupported = false;
-	}
+		context;
 	
 	// Init options
 	options = options || {};
-	options.sizing = 'sizing' in options ? options.sizing : 'cover';
+	options.size = 'size' in options ? options.size : 'cover';
+	options.attachment = 'attachment' in options ? options.attachment : 'scroll';
 	options.left = 'left' in options ? options.left : 'center';
 	options.top = 'top' in options ? options.top : 'center';
 	
-	// Load the image
-	if(canvasSupported) {
-		canvas.style.position = 'absolute';
+	// Detect canvas support
+	if(!!(canvas.getContext && (context = canvas.getContext('2d')))) {
+		// Init canvas
+		canvas.style.position = (options.attachment == 'scroll' ? 'absolute' : 'fixed');
 		canvas.style.zIndex = -1;
 		canvas.style.top = 0;
 		canvas.style.left = 0;
 		node.appendChild(canvas);
-		
+		// Load the image
 		return require('pyrsmk-imagine')(url).then(function(images) {
 			var image = images[0];
 			// Define the drawing funtion
@@ -37,7 +33,7 @@ module.exports = function(node, url, options) {
 				canvas.width = node.offsetWidth;
 				canvas.height = node.offsetHeight;
 				// Compute the image size
-				switch(options.sizing) {
+				switch(options.size) {
 					case 'cover':
 						if((image.width / canvas.width) > (image.height / canvas.height)) {
 							width = Math.round((canvas.height / image.height) * image.width);
@@ -59,7 +55,7 @@ module.exports = function(node, url, options) {
 						}
 						break;
 					default:
-						throw new Error("'"+options.sizing+"' sizing option is not supported");
+						throw new Error("'"+options.size+"' size option is not supported");
 				}
 				// Compute the image position
 				if(options.left === 'center') {
@@ -82,14 +78,15 @@ module.exports = function(node, url, options) {
 			return image;
 		});
 	}
-	// Fallback
+	// CSS background fallback
 	else {
 		var left = options.left + (typeof options.left != 'string' ? 'px' : ''),
 			top = options.top + (typeof options.top != 'string' ? 'px' : '');
 		node.style.backgroundImage = 'url(' + url + ')';
-		node.style.backgroundSize = options.sizing;
+		node.style.backgroundSize = options.size;
 		node.style.backgroundPosition = left + ' ' + top;
 		node.style.backgroundRepeat = 'no-repeat';
+		node.style.backgroundAttachment = options.attachment;
 		// Compatibility
 		return {then: function() {}};
 	}
