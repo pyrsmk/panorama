@@ -3,6 +3,8 @@ panorama 0.2.0
 
 Theres a lot websites today showing big background images. But loading images of that size can havea big impact on performance. Panorama tries to solve this problem by using Canvas2D to lighten images footprint.
 
+Compatible with modern browsers and IE > 8.
+
 Install
 -------
 
