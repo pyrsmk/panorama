@@ -60,6 +60,7 @@ gulp.task('build', ['version', 'lint'], function() {
 					var b = browserify(null, {standalone: name});
 
 					b.add('./node_modules/pyrsmk-imagine/imagine.min.js');
+					b.add('./node_modules/pyrsmk-w/W.min.js');
 
 					b.require('./src/'+name+'.js', {expose: name});
 

@@ -3,7 +3,6 @@
 	<head>
 		<title>panorama</title>
 		<meta charset="utf-8">
-		<script src="node_modules/pyrsmk-w/W.min.js"></script>
 		<script src="node_modules/pyrsmk-quark/quark.min.js"></script>
 		<script src="node_modules/quarky/quarky.min.js"></script>
 		<script src="../panorama.min.js"></script>
@@ -33,15 +32,11 @@
 				$$ = quark.$$;
 			
 			panorama($('body').node, 'images/background.jpg', {size: 'cover'}).then(function(image) {
-				W.addListener(function() {
-					image.redraw();
-				});
+				image.redraw();
 			});
 						
 			panorama($('div').node, 'images/background.jpg', {size: 'contain'}).then(function(image) {
-				W.addListener(function() {
-					image.redraw();
-				});
+				image.redraw();
 			});
 		</script>
 	</body>

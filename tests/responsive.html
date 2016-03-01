@@ -3,17 +3,18 @@
 	<head>
 		<title>panorama</title>
 		<meta charset="utf-8">
+		<script src="node_modules/pyrsmk-w/W.min.js"></script>
 		<script src="node_modules/pyrsmk-quark/quark.min.js"></script>
 		<script src="node_modules/quarky/quarky.min.js"></script>
 		<script src="../panorama.min.js"></script>
 		<style>
 			html, body {
 				width: 100%;
+				height: 100%;
 			}
 			
 			body {
 				margin: 0;
-				height: 3000px;
 			}
 			
 			div {
@@ -31,19 +32,11 @@
 			var $ = quark.$,
 				$$ = quark.$$;
 			
-			panorama(
-				$('body').node,
-				'images/background.jpg',
-				{size: 'contain', attachment: 'fixed', top: 0}
-			).then(function(image) {
-				image.redraw();
-			});
-						
-			panorama(
-				$('div').node,
-				'images/background.jpg',
-				{size: 'contain', attachment: 'scroll'}
-			).then(function(image) {
+			panorama($('body').node, {
+				320: 'images/background320.jpg',
+				768: 'images/background768.jpg',
+				1280: 'images/background1280.jpg'
+			}).then(function(image) {
 				image.redraw();
 			});
 		</script>
