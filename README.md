@@ -1,4 +1,4 @@
-panorama 0.3.0
+panorama 0.3.1
 ==============
 
 Theres a lot websites today showing big background images. But loading images of that size can havea big impact on performance. Panorama tries to solve this problem by using Canvas2D to lighten images footprint.
@@ -53,15 +53,15 @@ panorama($('div')[0], {
 });
 ```
 
-Advanced use
-------------
+Promise
+-------
 
-Sometimes we could need to manipulate the loaded image used for the canvas. Panorama returns a promise which returns the loaded image. Its useful, per example, to redraw images when the viewport has been resized.
+You could need to set some actions when the image has been loaded, then you can use the `then` promise. Please note that it's a simple promise support. There's no `catch` or anything like this.
 
 ```js
 panorama($('div')[0], 'images/picture.png').then(function(image) {
-	// Panorama adds a 'redraw' function into the loaded image
-	image.redraw();
+	// Will print informations about the loaded image
+	console.log(image);
 });
 ```
 

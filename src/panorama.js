@@ -1,4 +1,4 @@
-/*! panorama 0.3.0 (https://github.com/pyrsmk/panorama) */
+/*! panorama 0.3.1 (https://github.com/pyrsmk/panorama) */
 
 module.exports = function(node, urls, options) {
 	
@@ -8,6 +8,56 @@ module.exports = function(node, urls, options) {
 		W = require('pyrsmk-w'),
 		imagine = require('pyrsmk-imagine'),
 		callback;
+	
+	// Define drawing function
+	var draw = function(image) {
+		var x, y,
+			width,
+			height;
+		// Resize canvas
+		canvas.width = node.offsetWidth;
+		canvas.height = node.offsetHeight;
+		// Compute the image size
+		switch(options.size) {
+			case 'cover':
+				if((image.width / canvas.width) > (image.height / canvas.height)) {
+					width = Math.round((canvas.height / image.height) * image.width);
+					height = canvas.height;
+				}
+				else {
+					height = Math.round((canvas.width / image.width) * image.height);
+					width = canvas.width;
+				}
+				break;
+			case 'contain':
+				if((image.width / canvas.width) > (image.height / canvas.height)) {
+					height = Math.round((canvas.width / image.width) * image.height);
+					width = canvas.width;
+				}
+				else {
+					width = Math.round((canvas.height / image.height) * image.width);
+					height = canvas.height;
+				}
+				break;
+			default:
+				throw new Error("'" + options.size + "' size option is not supported");
+		}
+		// Compute the image position
+		if(options.left === 'center') {
+			x = (canvas.width - width) / 2;
+		}
+		else {
+			x = options.left;
+		}
+		if(options.top === 'center') {
+			y = (canvas.height - height) / 2;
+		}
+		else {
+			y = options.top;
+		}
+		// Draw image
+		context.drawImage(image, x, y, width, height);
+	};
 	
 	// Init options
 	options = options || {};
@@ -44,62 +94,9 @@ module.exports = function(node, urls, options) {
 			node.appendChild(canvas);
 			// Load the image
 			return imagine(url).then(function(images) {
-				var image = images[0];
-				// Define the drawing funtion
-				image.redraw = function() {
-					var x, y,
-						width,
-						height;
-					// Resize canvas
-					canvas.width = node.offsetWidth;
-					canvas.height = node.offsetHeight;
-					// Compute the image size
-					switch(options.size) {
-						case 'cover':
-							if((image.width / canvas.width) > (image.height / canvas.height)) {
-								width = Math.round((canvas.height / image.height) * image.width);
-								height = canvas.height;
-							}
-							else {
-								height = Math.round((canvas.width / image.width) * image.height);
-								width = canvas.width;
-							}
-							break;
-						case 'contain':
-							if((image.width / canvas.width) > (image.height / canvas.height)) {
-								height = Math.round((canvas.width / image.width) * image.height);
-								width = canvas.width;
-							}
-							else {
-								width = Math.round((canvas.height / image.height) * image.width);
-								height = canvas.height;
-							}
-							break;
-						default:
-							throw new Error("'"+options.size+"' size option is not supported");
-					}
-					// Compute the image position
-					if(options.left === 'center') {
-						x = (canvas.width - width) / 2;
-					}
-					else {
-						x = options.left;
-					}
-					if(options.top === 'center') {
-						y = (canvas.height - height) / 2;
-					}
-					else {
-						y = options.top;
-					}
-					// Draw image
-					context.drawImage(image, x, y, width, height);
-				};
-				image.redraw();
-				// Return the loaded image instance
-				return image;
-			}).then(function(image) {
+				draw(images[0]);
 				if(callback) {
-					callback(image);
+					callback(images[0]);
 				}
 			});
 		}
