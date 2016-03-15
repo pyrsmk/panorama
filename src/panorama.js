@@ -1,4 +1,4 @@
-/*! panorama 0.3.2 (https://github.com/pyrsmk/panorama) */
+/*! panorama 0.4.0 (https://github.com/pyrsmk/panorama) */
 
 module.exports = function(node, urls, options) {
 	
@@ -14,9 +14,6 @@ module.exports = function(node, urls, options) {
 		var x, y,
 			width,
 			height;
-		// Resize canvas
-		canvas.width = node.offsetWidth;
-		canvas.height = node.offsetHeight;
 		// Compute the image size
 		switch(options.size) {
 			case 'cover':
@@ -87,7 +84,6 @@ module.exports = function(node, urls, options) {
 		// Detect canvas support
 		if(!!(canvas.getContext && (context = canvas.getContext('2d')))) {
 			// Init canvas
-			canvas.draw = draw;
 			canvas.style.position = (options.attachment == 'scroll' ? 'absolute' : 'fixed');
 			canvas.style.zIndex = -1;
 			canvas.style.top = 0;
@@ -95,10 +91,21 @@ module.exports = function(node, urls, options) {
 			node.appendChild(canvas);
 			// Load the image
 			return imagine(url).then(function(images) {
-				draw(images[0]);
+				// Update draw function
+				canvas.draw = function(image) {
+					return function() {
+						draw(image);
+					};
+				}(images[0]);
+				// Resize canvas
+				canvas.width = node.offsetWidth;
+				canvas.height = node.offsetHeight;
+				 // Call callback
 				if(callback) {
 					callback(images[0]);
 				}
+				// Draw image
+				draw(images[0]);
 			});
 		}
 		// CSS background fallback
