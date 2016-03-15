@@ -71,7 +71,7 @@ Advanced use
 If you need to redraw your image into your canvas for any reason, do :
 
 ```js
-$('canvas')[0].draw(image);
+$('canvas')[0].draw();
 ```
 
 License
