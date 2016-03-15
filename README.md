@@ -1,4 +1,4 @@
-panorama 0.3.1
+panorama 0.3.2
 ==============
 
 Theres a lot websites today showing big background images. But loading images of that size can havea big impact on performance. Panorama tries to solve this problem by using Canvas2D to lighten images footprint.
@@ -63,6 +63,15 @@ panorama($('div')[0], 'images/picture.png').then(function(image) {
 	// Will print informations about the loaded image
 	console.log(image);
 });
+```
+
+Advanced use
+------------
+
+If you need to redraw your image into your canvas for any reason, do :
+
+```js
+$('canvas')[0].draw(image);
 ```
 
 License
