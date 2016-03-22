@@ -31,13 +31,9 @@
 			var $ = quark.$,
 				$$ = quark.$$;
 			
-			panorama($('body').node, 'images/background.jpg', {size: 'cover'}).then(function(image) {
-				image.redraw();
-			});
+			panorama($('body').node, 'images/background.jpg', {size: 'cover'});
 						
-			panorama($('div').node, 'images/background.jpg', {size: 'contain'}).then(function(image) {
-				image.redraw();
-			});
+			panorama($('div').node, 'images/background.jpg', {size: 'contain'});
 		</script>
 	</body>
 </html>
