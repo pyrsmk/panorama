@@ -1,4 +1,4 @@
-/*! panorama 0.4.2 (https://github.com/pyrsmk/panorama) */
+/*! panorama 0.4.3 (https://github.com/pyrsmk/panorama) */
 
 module.exports = function(node, urls, options) {
 	
@@ -53,6 +53,7 @@ module.exports = function(node, urls, options) {
 			y = options.top;
 		}
 		// Draw image
+		context.clearRect(0, 0, canvas.width, canvas.height);
 		context.drawImage(image, x, y, width, height);
 	};
 	
@@ -105,7 +106,7 @@ module.exports = function(node, urls, options) {
 					callback(images[0]);
 				}
 				// Draw image
-				draw(images[0]);
+				canvas.draw();
 			});
 		}
 		// CSS background fallback
