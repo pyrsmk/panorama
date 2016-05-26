@@ -1,7 +1,7 @@
 {
   "name": "pyrsmk-panorama",
   "description": "Lighten background images with Canvas2D",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "author": "Aurélien Delogu <pyrsmk@dreamysource.fr> (http://dreamysource.fr)",
   "repository": {
     "type": "git",

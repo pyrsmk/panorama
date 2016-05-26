@@ -19,7 +19,7 @@
 		"url": "https://github.com/pyrsmk/panorama/issues",
 		"email": "dev@dreamysource.fr"
 	},
-	"homepage": "http://dreamysource.fr/product/panorama",
+	"homepage": "http://dreamysource.io/project/panorama",
   "ignore": [
     ".git/",
     ".gitignore",

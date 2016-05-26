@@ -1,4 +1,4 @@
-/*! panorama 0.4.5 (https://github.com/pyrsmk/panorama) */
+/*! panorama 0.4.6 (https://github.com/pyrsmk/panorama) */
 
 module.exports = function(node, urls, options) {
 	
