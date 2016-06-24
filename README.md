@@ -5,6 +5,8 @@ Theres a lot websites today showing big background images. But loading images of
 
 Compatible with modern browsers and IE > 8.
 
+Note : as stated on [caniuse.com](http://caniuse.com/#feat=css-canvas), background images in canvas are supported on Safari but this feature is not part of any spec
+
 Install
 -------
 
