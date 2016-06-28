@@ -1,9 +1,9 @@
 panorama 0.4.6
 ==============
 
-Theres a lot websites today showing big background images. But loading images of that size can havea big impact on performance. Panorama tries to solve this problem by using Canvas2D to lighten images footprint.
+Nowadays, there's a lot of websites that are showing huge background images. But loading pictures of that size can have a big impact on performances (this is usually seen when scrolling). Panorama tries to solve this problem by using Canvas2D to lighten images footprint.
 
-Compatible with modern browsers and IE > 8.
+This is compatible with modern browsers and IE > 8.
 
 Note : as stated on [caniuse.com](http://caniuse.com/#feat=css-canvas), background images in canvas are natively supported on Safari but this feature is not part of any spec
 
@@ -26,7 +26,7 @@ Quickly :
 panorama($('.some_block')[0], 'images/background.jpg');
 ```
 
-But panorama handles some options too as its third parameter :
+Panorama handles some options too as its third parameter :
 
 - size : either `contain` or `cover` (by default)
 - attachment : `scroll` (default) or `fixed`
@@ -38,7 +38,7 @@ But panorama handles some options too as its third parameter :
 panorama($('div')[0], 'images/picture.png', {sizing: 'contain'});
 ```
 
-Since panorama creates a `canvas` node in absolute position, you should position your container too (at least with `position: relative`);
+Since panorama creates a `canvas` node in absolute position, you should position your container too (at least with `position: relative`).
 
 NOTE : if `canvas` is not available on the browser then it fallbacks to `background` CSS property
 
@@ -58,7 +58,7 @@ panorama($('div')[0], {
 Promise
 -------
 
-You could need to set some actions when the image has been loaded, then you can use the `then` promise. Please note that it's a simple promise support. There's no `catch` or anything like this.
+You could need to set some actions when the image has been loaded, then you can use the `then` promise. Please note that it's a simple promise support. There's no `catch` or anything else.
 
 ```js
 panorama($('div')[0], 'images/picture.png').then(function(image) {
