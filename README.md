@@ -1,4 +1,4 @@
-panorama 0.4.6
+panorama 0.5.0
 ==============
 
 Nowadays, there's a lot of websites that are showing huge background images. But loading pictures of that size can have a big impact on performances (this is usually seen when scrolling). Panorama tries to solve this problem by using Canvas2D to lighten images footprint. For an example, take a look at [dreamysource.fr](http://dreamysource.fr), I've used it a lot on this website.
@@ -13,7 +13,6 @@ Install
 ```
 npm install pyrsmk-panorama
 bower install pyrsmk-panorama
-jam install pyrsmk-panorama
 ```
 
 Use

@@ -1,12 +1,7 @@
-/*! panorama 0.4.6 (https://github.com/pyrsmk/panorama) */
-
-module.exports = function(node, urls, options) {
-	
+function Panorama(node, urls, options) {
 	// Init canvas
 	var canvas = document.createElement('canvas'),
 		context,
-		W = require('pyrsmk-w'),
-		imagine = require('pyrsmk-imagine'),
 		callback;
 	
 	// Define drawing function
@@ -125,5 +120,4 @@ module.exports = function(node, urls, options) {
 	return {then: function(cb) {
 		callback = cb;
 	}};
-	
-};
+}

@@ -1,7 +1,7 @@
 {
 	"name": "pyrsmk-panorama",
 	"description": "Lighten background images with Canvas2D",
-	"main": "panorama.js",
+	"main": "lib/panorama.js",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/pyrsmk/panorama.git"
@@ -25,7 +25,7 @@
     ".gitignore",
     "nodes_modules/",
     "tests/",
-    "Gruntfile.js",
+    "gulpfile.js",
     "package.json"
   ]
 }
